@@ -11,7 +11,7 @@ setuptools.setup(
     version="0.0.1",
     author="ralgond",
     license='MIT',
-    author_email="ht201509@gmail.com",
+    author_email="ht201509@163.com",
     description="session-based recommenders",
     long_description=long_description,
     long_description_content_type="text/markdown",
