@@ -150,7 +150,7 @@ class SASRec(pl.LightningModule):
                               batch["mask"], self.output_embedding, self.sampling_style, self.final_activation,
                               self.topk_sampling, self.topk_sampling_k, self.device)
         for i, k in enumerate(cut_offs.tolist()):
-            print (f'recall_cutoff_{k}', recall[i])
+            # print (f'recall_cutoff_{k}', recall[i])
             self.log(f'recall_cutoff_{k}', recall[i])
             self.log(f'mrr_cutoff_{k}', mrr[i])
         self.log('test_seq_len', x_hat.shape[1])
