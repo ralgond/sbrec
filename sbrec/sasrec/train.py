@@ -7,7 +7,7 @@ from sbrec.sasrec.model import SASRec
 from sbrec.sasrec.dataset import SasRecDataset
 
 
-def train_sasrec(config, data_dir, train_stats, test_stats, num_items):
+def train_sasrec(config, train_stats, test_stats, num_items):
     checkpoint_callback = ModelCheckpoint(save_top_k=1,
                                           monitor='recall_cutoff_5',
                                           mode='max',
@@ -24,7 +24,7 @@ def train_sasrec(config, data_dir, train_stats, test_stats, num_items):
     
     assert 0 <= config["num_batch_negatives"] < config['batch_size']
 
-    train_set = SasRecDataset(f'{data_dir}/{config["dataset"]}/{config["dataset"]}_train.jsonl',
+    train_set = SasRecDataset(f'dataset/{config["dataset"]}_train.jsonl',
                               train_stats["num_sessions"],
                               num_items=num_items,
                               max_seqlen=config["max_session_length"],
@@ -35,7 +35,7 @@ def train_sasrec(config, data_dir, train_stats, test_stats, num_items):
                               sampling_style=config["sampling_style"],
                               shuffling_style=config["shuffling_style"])
 
-    test_set = SasRecDataset(f'{data_dir}/{config["dataset"]}/{config["dataset"]}_test.jsonl',
+    test_set = SasRecDataset(f'dataset/{config["dataset"]}_test.jsonl',
                              test_stats["num_sessions"],
                              num_items=num_items,
                              max_seqlen=config["max_session_length"],
